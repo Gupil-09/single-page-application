@@ -376,20 +376,20 @@
             <h4>Default Users:</h4>
             <ul>
                 <li><strong>Admin:</strong> Email - admin@taskflow.com, Password - admin123</li>
-                <li><strong>Team1:</strong> Email - team1@taskflow.com, Password - team123</li>
-                <li><strong>Team2:</strong> Email - team2@taskflow.com, Password - team123</li>
-                <li><strong>Team3:</strong> Email - team3@taskflow.com, Password - team123</li>
-                <li><strong>Team4:</strong> Email - team4@taskflow.com, Password - team123</li>
+                <li><strong>Team1:</strong> Email - employee1@taskflow.com, Password - employee123</li>
+                <li><strong>Team2:</strong> Email - employee2@taskflow.com, Password - employee123</li>
+                <li><strong>Team3:</strong> Email - employee3@taskflow.com, Password - employee123</li>
+                <li><strong>Team4:</strong> Email - employee4@taskflow.com, Password - employee123</li>
             </ul>
         </div>
     </div>
     <script>
         const defaultUsers = {
             admin: { email: "admin@taskflow.com", password: "admin123", role: "admin" },
-            employee1: { email: "team1@taskflow.com", password: "team123", role: "employee", tasks: [] },
-            employee2: { email: "team2@taskflow.com", password: "team123", role: "employee", tasks: [] },
-            employee3: { email: "team3@taskflow.com", password: "team123", role: "employee", tasks: [] },
-            employee4: { email: "team4@taskflow.com", password: "team123", role: "employee", tasks: [] }
+            employee1: { email: "employee1@taskflow.com", password: "employee123", role: "employee", tasks: [] },
+            employee2: { email: "employee2@taskflow.com", password: "employee123", role: "employee", tasks: [] },
+            employee3: { email: "employee3@taskflow.com", password: "employee123", role: "employee", tasks: [] },
+            employee4: { email: "employee4@taskflow.com", password: "employee123", role: "employee", tasks: [] }
         };
         let users = JSON.parse(localStorage.getItem('users')) || defaultUsers;
         function saveUsersToLocalStorage() {
