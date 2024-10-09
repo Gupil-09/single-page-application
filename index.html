@@ -230,78 +230,69 @@
             color: #505050;
         }
         /* Leave Application Form Styling */
-.leave-application-form {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-}
-
-.leave-application-form h3 {
-    color: white;
-    margin-bottom: 20px;
-}
-
-.leave-application-form form {
-    display: flex;
-    flex-direction: column;
-}
-
-.leave-application-form input, 
-.leave-application-form select, 
-.leave-application-form button {
-    width: 100%;
-    padding: 15px;
-    margin: 12px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-.leave-application-form input:focus, 
-.leave-application-form select:focus {
-    outline: none;
-    border-color: #004a99;
-}
-
-.leave-application-form button {
-    background-color: #28a745;
-    color: white;
-    cursor: pointer;
-    border: none;
-    font-size: 18px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.leave-application-form button:hover {
-    background-color: #218838;
-}
-/* Styling for Leave Application Form with Dates */
-.leave-application-form input, 
-.leave-application-form select {
-    margin-bottom: 12px;
-}
-
-.leave-application-form input[type="date"] {
-    padding: 12px;
-    font-size: 16px;
-}
-
-.leave-application-form input:focus, 
-.leave-application-form select:focus {
-    outline: none;
-    border-color: #004a99;
-}
-label {
-    color: white;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-size: 16px;
-}
-
+        .leave-application-form {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        .leave-application-form h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .leave-application-form form {
+            display: flex;
+            flex-direction: column;
+        }
+        .leave-application-form input, 
+        .leave-application-form select, 
+        .leave-application-form button {
+            width: 100%;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .leave-application-form input:focus, 
+        .leave-application-form select:focus {
+            outline: none;
+            border-color: #004a99;
+        }
+        .leave-application-form button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .leave-application-form button:hover {
+            background-color: #218838;
+        }
+        /* Styling for Leave Application Form with Dates */
+        .leave-application-form input, 
+        .leave-application-form select {
+            margin-bottom: 12px;
+        }
+        .leave-application-form input[type="date"] {
+            padding: 12px;
+            font-size: 16px;
+        }
+        .leave-application-form input:focus, 
+        .leave-application-form select:focus {
+            outline: none;
+            border-color: #004a99;
+        }
+        label {
+            color: white;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -358,7 +349,7 @@ label {
                     <input type="text" id="employeeId" placeholder="Employee ID" required>
                     <label for="leaveReason">Leave Type:</label>
                     <select id="leaveReason" required>
-                        <option value="" disabled selected>Select Reason for Leave</option>
+                        <option value="" disabled selected>Select Type Leave</option>
                         <option value="paid">Paid Leave</option>
                         <option value="unpaid">Unpaid Leave</option>
                         <option value="sick">Sick Leave</option>
@@ -400,13 +391,10 @@ label {
             employee3: { email: "team3@taskflow.com", password: "team123", role: "employee", tasks: [] },
             employee4: { email: "team4@taskflow.com", password: "team123", role: "employee", tasks: [] }
         };
-
         let users = JSON.parse(localStorage.getItem('users')) || defaultUsers;
-
         function saveUsersToLocalStorage() {
             localStorage.setItem('users', JSON.stringify(users));
         }
-
         function login() {
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
@@ -418,7 +406,6 @@ label {
                 alert("Invalid login credentials.");
             }
         }
-
         function showDashboard(role) {
             document.getElementById("login-container").classList.remove("active");
             if (role === "admin") {
@@ -430,16 +417,13 @@ label {
                 displayTasks();
             }
         }
-
         function displayTasks() {
             const currentUserEmail = localStorage.getItem('currentUserEmail');
             const user = Object.values(users).find(u => u.email === currentUserEmail);
             const taskList = document.getElementById("task-list");
             const completedTaskList = document.getElementById("completed-task-list");
-
             taskList.innerHTML = "";
             completedTaskList.innerHTML = "";
-
             // Display "Your Tasks"
             if (user.tasks && user.tasks.length > 0) {
                 user.tasks.forEach((task, index) => {
@@ -453,7 +437,6 @@ label {
                 noTaskMessage.innerHTML = "No assigned tasks.";
                 taskList.appendChild(noTaskMessage);
             }
-
             // Display "Completed Tasks"
             if (user.completedTasks && user.completedTasks.length > 0) {
                 user.completedTasks.forEach((task, index) => {
@@ -468,7 +451,6 @@ label {
                 completedTaskList.appendChild(noCompletedTaskMessage);
             }
         }
-
         function setupTaskForm() {
             const form = document.getElementById("taskForm");
             form.onsubmit = (e) => {
@@ -477,7 +459,6 @@ label {
                 const taskDescription = document.getElementById("taskDescription").value;
                 const dueDate = document.getElementById("dueDate").value;
                 const employeeKey = document.getElementById("employeeSelect").value;
-
                 if (employeeKey && taskTitle && taskDescription && dueDate) {
                     if (!users[employeeKey].tasks) {
                         users[employeeKey].tasks = [];
@@ -488,7 +469,6 @@ label {
                         dueDate: dueDate,
                         completed: false
                     });
-
                     saveUsersToLocalStorage();
 
                     alert("Task assigned successfully!");
@@ -499,23 +479,19 @@ label {
                 }
             };
         }
-
         function completeTask(index) {
             const currentUserEmail = localStorage.getItem('currentUserEmail');
             const userKey = Object.keys(users).find(key => users[key].email === currentUserEmail);
             const completedTask = users[userKey].tasks.splice(index, 1)[0];
             completedTask.completed = true;
-
             if (!users[userKey].completedTasks) {
                 users[userKey].completedTasks = [];
             }
             users[userKey].completedTasks.push(completedTask);
-
             saveUsersToLocalStorage();
             displayTasks();
             updateTaskProgress(userKey);
         }
-
         function deleteCompletedTask(index) {
             const currentUserEmail = localStorage.getItem('currentUserEmail');
             const userKey = Object.keys(users).find(key => users[key].email === currentUserEmail);
@@ -523,104 +499,89 @@ label {
             saveUsersToLocalStorage();
             displayTasks();
         }
-
         // Array to store leave applications
-let leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
-
-// Function to handle leave form submission
-document.getElementById("leaveForm").onsubmit = (e) => {
-    e.preventDefault();
-    
-    const name = document.getElementById("employeeName").value;
-    const id = document.getElementById("employeeId").value;
-    const reason = document.getElementById("leaveReason").value;
-    const startDate = document.getElementById("startDate").value;
-    const endDate = document.getElementById("endDate").value;
-
-    // Validate the date range
-    if (new Date(startDate) > new Date(endDate)) {
-        alert("End date cannot be before the start date.");
-        return;
-    }
-    
-    // Add leave application to the array
-    leaveApplications.push({ name, id, reason, startDate, endDate });
-    saveLeaveApplicationsToLocalStorage();
-    
-    // Clear the form
-    e.target.reset();
-    
-    alert("Leave application submitted successfully.");
-};
-
-// Save leave applications to local storage
-function saveLeaveApplicationsToLocalStorage() {
-    localStorage.setItem('leaveApplications', JSON.stringify(leaveApplications));
-}
-
-// Display leave applications in the admin dashboard
-function displayLeaveApplications() {
-    const leaveApplicationsDiv = document.getElementById("leave-applications");
-    const leaveList = document.createElement("ul");
-    
-    leaveApplicationsDiv.innerHTML = ""; // Clear previous content
-    leaveApplicationsDiv.appendChild(leaveList);
-    
-    if (leaveApplications.length > 0) {
-        leaveApplications.forEach((application, index) => {
-            const li = document.createElement("li");
-            li.innerHTML = `<div>
-                                <strong>Name:</strong> ${application.name}<br>
-                                <strong>ID:</strong> ${application.id}<br>
-                                <strong>Type:</strong> ${application.reason}<br>
-                                <strong>From:</strong> ${application.startDate}<br>
-                                <strong>Till:</strong> ${application.endDate}
-                            </div>
-                            <button onclick="deleteLeaveApplication(${index})">Delete</button>`;
-            leaveList.appendChild(li);
-        });
-    } else {
-        const noApplicationsMessage = document.createElement("li");
-        noApplicationsMessage.textContent = "No leave applications.";
-        leaveList.appendChild(noApplicationsMessage);
-    }
-}
-
-// Delete a leave application
-function deleteLeaveApplication(index) {
-    leaveApplications.splice(index, 1);
-    saveLeaveApplicationsToLocalStorage();
-    displayLeaveApplications();
-}
-
-// Load leave applications when the admin dashboard is shown
-function showDashboard(role) {
-    document.getElementById("login-container").classList.remove("active");
-    if (role === "admin") {
-        document.getElementById("admin-dashboard").classList.add("active");
-        displayEmployees();
-        setupTaskForm();
-        displayLeaveApplications(); // Display leave applications
-    } else {
-        document.getElementById("team-dashboard").classList.add("active");
-        displayTasks();
-    }
-}
-
-// Initialize the leave applications on page load
-window.onload = () => {
-    const currentUserEmail = localStorage.getItem('currentUserEmail');
-    if (currentUserEmail) {
-        const user = Object.values(users).find(u => u.email === currentUserEmail);
-        if (user) {
-            showDashboard(user.role);
-        } else {
-            localStorage.removeItem('currentUserEmail');
+        let leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
+        // Function to handle leave form submission
+        document.getElementById("leaveForm").onsubmit = (e) => {
+            e.preventDefault();
+            const name = document.getElementById("employeeName").value;
+            const id = document.getElementById("employeeId").value;
+            const reason = document.getElementById("leaveReason").value;
+            const startDate = document.getElementById("startDate").value;
+            const endDate = document.getElementById("endDate").value;
+            // Validate the date range
+            if (new Date(startDate) > new Date(endDate)) {
+                alert("End date cannot be before the start date.");
+                return;
+            }
+            // Add leave application to the array
+            leaveApplications.push({ name, id, reason, startDate, endDate });
+            saveLeaveApplicationsToLocalStorage();
+            // Clear the form
+            e.target.reset();
+            alert("Leave application submitted successfully.");
+        };
+        // Save leave applications to local storage
+        function saveLeaveApplicationsToLocalStorage() {
+            localStorage.setItem('leaveApplications', JSON.stringify(leaveApplications));
         }
-    }
-    displayLeaveApplications();
-};
-
+        // Display leave applications in the admin dashboard
+        function displayLeaveApplications() {
+            const leaveApplicationsDiv = document.getElementById("leave-applications");
+            const leaveList = document.createElement("ul");
+            leaveApplicationsDiv.innerHTML = ""; // Clear previous content
+            leaveApplicationsDiv.appendChild(leaveList);
+            if (leaveApplications.length > 0) {
+                leaveApplications.forEach((application, index) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `<div>
+                                        <strong>Name:</strong> ${application.name}<br>
+                                        <strong>ID:</strong> ${application.id}<br>
+                                        <strong>Type:</strong> ${application.reason}<br>
+                                        <strong>From:</strong> ${application.startDate}<br>
+                                        <strong>Till:</strong> ${application.endDate}
+                                    </div>
+                                    <button onclick="deleteLeaveApplication(${index})">Delete</button>`;
+                    leaveList.appendChild(li);
+                });
+            } else {
+                const noApplicationsMessage = document.createElement("li");
+                noApplicationsMessage.textContent = "No leave applications.";
+                leaveList.appendChild(noApplicationsMessage);
+            }
+        }
+        // Delete a leave application
+        function deleteLeaveApplication(index) {
+            leaveApplications.splice(index, 1);
+            saveLeaveApplicationsToLocalStorage();
+            displayLeaveApplications();
+        }
+        // Load leave applications when the admin dashboard is shown
+        function showDashboard(role) {
+            document.getElementById("login-container").classList.remove("active");
+            if (role === "admin") {
+                document.getElementById("admin-dashboard").classList.add("active");
+                displayEmployees();
+                setupTaskForm();
+                displayLeaveApplications(); // Display leave applications
+            } else {
+                document.getElementById("team-dashboard").classList.add("active");
+                displayTasks();
+            }
+        }
+        // Initialize the leave applications on page load
+        window.onload = () => {
+            const currentUserEmail = localStorage.getItem('currentUserEmail');
+            if (currentUserEmail) {
+                const user = Object.values(users).find(u => u.email === currentUserEmail);
+                if (user) {
+                    showDashboard(user.role);
+                } else {
+                    localStorage.removeItem('currentUserEmail');
+                }
+            }
+            displayLeaveApplications();
+        };
         function displayEmployees() {
             const employeeGrid = document.getElementById("employee-grid");
             const employeeSelect = document.getElementById("employeeSelect");
@@ -648,13 +609,11 @@ window.onload = () => {
                         assignedTaskList.appendChild(taskItem);
                     });
                     card.appendChild(assignedTaskList);
-
                     const completedTaskList = document.createElement("ul");
                     completedTaskList.className = "task-list";
                     const completedTasksTitle = document.createElement("h5");
                     completedTasksTitle.innerText = "Completed Tasks";
                     card.appendChild(completedTasksTitle);
-
                     if (user.completedTasks) {
                         user.completedTasks.forEach((task, index) => {
                             const taskItem = document.createElement("li");
@@ -664,52 +623,43 @@ window.onload = () => {
                         });
                     }
                     card.appendChild(completedTaskList);
-
                     employeeGrid.appendChild(card);
                     const option = document.createElement("option");
                     option.value = userKey;
                     option.textContent = user.email;
                     employeeSelect.appendChild(option);
-
                     updateTaskProgress(userKey);
                 }
             });
         }
-
         function deleteTask(userKey, index) {
             users[userKey].tasks.splice(index, 1);
             saveUsersToLocalStorage();
             displayEmployees();
         }
-
         function deleteCompletedTaskAdmin(userKey, index) {
             users[userKey].completedTasks.splice(index, 1);
             saveUsersToLocalStorage();
             displayEmployees();
         }
-
         function updateTaskProgress(userKey) {
             const user = users[userKey];
             const totalTasks = user.tasks.length + (user.completedTasks ? user.completedTasks.length : 0);
             if (totalTasks === 0) return;
-            
             const completedTasks = user.completedTasks ? user.completedTasks.length : 0;
             const progressPercentage = Math.floor((completedTasks / totalTasks) * 100);
-            
             const card = document.getElementById(`employee-${userKey}`);
             if (card) {
                 card.querySelector(".progress-bar").value = progressPercentage;
                 card.querySelector(".progress-text").innerText = progressPercentage + "% Complete";
             }
         }
-
         function logout() {
             localStorage.removeItem('currentUserEmail');
             document.getElementById("login-container").classList.add("active");
             document.getElementById("admin-dashboard").classList.remove("active");
             document.getElementById("team-dashboard").classList.remove("active");
         }
-
         window.onload = () => {
             const currentUserEmail = localStorage.getItem('currentUserEmail');
             if (currentUserEmail) {
@@ -721,7 +671,6 @@ window.onload = () => {
                 }
             }
         };
-
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById("password");
             const eyeIcon = document.getElementById("eye");
