@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskFlow Solutions</title>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <style>
         body {
@@ -63,6 +62,7 @@
             cursor: pointer;
             font-size: 16px;
             margin-top: 20px;
+            transition: 0.3s;
         }
         .login-box button:hover {
             background-color: #003d80;
@@ -73,14 +73,6 @@
             text-align: center;
             padding: 20px;
         }
-        .header img {
-            height: 50px;
-        }
-        .header .title {
-            font-size: 32px;
-            margin: 10px 0;
-            font-weight: bold;
-        }
         .hero {
             text-align: center;
             background-color: #004a99;
@@ -88,22 +80,11 @@
             padding: 40px 20px;
             margin-bottom: 30px;
         }
-        .hero h1 {
-            margin: 0;
-            font-size: 48px;
-            font-weight: bold;
-        }
-        .hero p {
-            font-size: 18px;
-        }
         .footer {
             text-align: center;
             padding: 15px;
             background-color: #004a99;
             color: white;
-            position: relative;
-            width: 98.4%;
-            bottom: 0;
             margin-top: auto;
             display: flex;
             flex-direction: column;
@@ -118,18 +99,60 @@
             font-size: 24px;
             cursor: pointer;
         }
+        .footer-icons i:hover {
+            scale: 1.2;
+        }
+        .credentials {
+            text-align: left;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+        .credentials h4 {
+            margin-bottom: 10px;
+            color: white;
+        }
+        .credentials ul {
+            list-style: none;
+            padding: 0;
+            color: white;
+        }
+        .credentials ul li {
+            margin: 5px 0;
+        }
         .dashboard h2 {
             text-align: center;
             margin-top: 0;
             color: white;
         }
-        .dashboard.active, .h3 {
-            display: block;
+        .dashboard h3 {
             color: white;
+            margin-top: 20px;
         }
         .dashboard ul {
             list-style: none;
             padding: 0;
+        }
+        .dashboard ul li {
+            background-color: rgba(255, 255, 255, 0.5);
+            color: black;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .dashboard ul li button {
+            padding: 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .dashboard ul li button:hover {
+            background-color: #c82333;
         }
         .employee-grid {
             display: grid;
@@ -138,23 +161,25 @@
             margin: 20px 0;
         }
         .employee-card {
-            background-color: #fff;
+            background-color: rgba(225, 225, 225, 0.5);
             color: black;
             padding: 15px;
             border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
         .employee-card h4 {
             margin: 0 0 10px 0;
             font-size: 18px;
         }
-        .employee-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .employee-card .progress-bar {
+            width: 100%;
+            margin-top: 10px;
         }
-        .employee-card ul li {
-            margin: 5px 0;
+        .progress-text {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 14px;
+            color: black;
         }
         .admin-task-form {
             max-width: 600px;
@@ -192,52 +217,9 @@
             cursor: pointer;
             border-radius: 5px;
             font-size: 16px;
+            transition: background-color 0.3s ease;
         }
         .btn-logout:hover {
-            background-color: #c82333;
-        }
-        .task-list {
-            list-style: none;
-            padding: 0;
-        }
-        .task-list li {
-            background-color: #fff;
-            color: black;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-        .task-list li button {
-            padding: 10px;
-            background-color: #004a99;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        .task-list li button:hover {
-            background-color: #003d80;
-        }
-        .task-list li div {
-            margin-bottom: 10px;
-        }
-        .task-list li strong {
-            font-size: 18px;
-        }
-        .task-list li button.delete-task {
-            background-color: #dc3545;
-            color: white;
-            font-size: 16px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .task-list li button.delete-task:hover {
             background-color: #c82333;
         }
         .eye-icon {
@@ -245,25 +227,81 @@
             top: 40%;
             right: 20px;
             cursor: pointer;
-            color: #ccc;
+            color: #505050;
         }
-        .footer .credentials {
-            margin-top: 20px;
-            text-align: left;
-            max-width: 800px;
-        }
-        .footer .credentials h4 {
-            margin-bottom: 10px;
-            color: white;
-        }
-        .footer .credentials ul {
-            list-style: none;
-            padding: 0;
-            color: white;
-        }
-        .footer .credentials ul li {
-            margin: 5px 0;
-        }
+        /* Leave Application Form Styling */
+.leave-application-form {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.leave-application-form h3 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.leave-application-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.leave-application-form input, 
+.leave-application-form select, 
+.leave-application-form button {
+    width: 100%;
+    padding: 15px;
+    margin: 12px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.leave-application-form input:focus, 
+.leave-application-form select:focus {
+    outline: none;
+    border-color: #004a99;
+}
+
+.leave-application-form button {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.leave-application-form button:hover {
+    background-color: #218838;
+}
+/* Styling for Leave Application Form with Dates */
+.leave-application-form input, 
+.leave-application-form select {
+    margin-bottom: 12px;
+}
+
+.leave-application-form input[type="date"] {
+    padding: 12px;
+    font-size: 16px;
+}
+
+.leave-application-form input:focus, 
+.leave-application-form select:focus {
+    outline: none;
+    border-color: #004a99;
+}
+label {
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
     </style>
 </head>
 <body>
@@ -285,26 +323,55 @@
         </div>
         <div class="dashboard" id="admin-dashboard">
             <h2>Admin Dashboard</h2>
-            <h3>Assign Tasks to Employees</h3>
+            <h3>Assign Tasks to Teams</h3>
             <form class="admin-task-form" id="taskForm">
                 <input type="text" id="taskTitle" placeholder="Task Title" required>
                 <textarea id="taskDescription" placeholder="Task Description" rows="3" required></textarea>
                 <input type="date" id="dueDate" placeholder="Due Date" required>
                 <select id="employeeSelect" required>
-                    <option value="" disabled selected>Select Employee</option>
+                    <option value="" disabled selected>Select Team</option>
                 </select>
                 <button type="submit">Assign Task</button>
             </form>
-            <h3>Employee Tasks</h3>
+            <h3>Team Progress</h3>
             <div class="employee-grid" id="employee-grid"></div>
+            <!-- Leave Applications Section -->
+            <h3>Leave Applications</h3>
+            <div class="leave-applications" id="leave-applications">
+                <!-- List of leave applications will be displayed here -->
+            </div>
             <div class="btn-logout" onclick="logout()">Logout</div>
-        </div>
-        <div class="dashboard" id="employee-dashboard">
-            <h2>Employee Dashboard</h2>
+        </div>        
+        <div class="dashboard" id="team-dashboard">
+            <h2>Team Dashboard</h2>
             <h3>Your Tasks</h3>
             <ul class="task-list" id="task-list"></ul>
+            <h3>Completed Tasks</h3>
+            <ul class="task-list" id="completed-task-list"></ul>
+            <!-- Leave Application Form Div -->
+            <div class="leave-application-form" id="leave-application-form">
+                <h3>Apply for Leave</h3>
+                <form id="leaveForm">
+                    <label for="employeeName">Name:</label>
+                    <input type="text" id="employeeName" placeholder="Your Name" required>
+                    <label for="employeeId">Employee ID:</label>
+                    <input type="text" id="employeeId" placeholder="Employee ID" required>
+                    <label for="leaveReason">Leave Type:</label>
+                    <select id="leaveReason" required>
+                        <option value="" disabled selected>Select Reason for Leave</option>
+                        <option value="paid">Paid Leave</option>
+                        <option value="unpaid">Unpaid Leave</option>
+                        <option value="sick">Sick Leave</option>
+                    </select>
+                    <label for="startDate">From:</label>
+                    <input type="date" id="startDate" placeholder="Start Date" required>
+                    <label for="endDate">Till:</label>
+                    <input type="date" id="endDate" placeholder="End Date" required>
+                    <button type="submit">Submit Leave Application</button>
+                </form>
+            </div>            
             <div class="btn-logout" onclick="logout()">Logout</div>
-        </div>
+        </div>        
     </div>
     <div class="footer">
         &copy; 2024 TaskFlow Solutions. All Rights Reserved.
@@ -318,35 +385,24 @@
             <h4>Default Users:</h4>
             <ul>
                 <li><strong>Admin:</strong> Email - admin@taskflow.com, Password - admin123</li>
-                <li><strong>Employee1:</strong> Email - employee1@taskflow.com, Password - employee123</li>
-                <li><strong>Employee2:</strong> Email - employee2@taskflow.com, Password - employee123</li>
-                <li><strong>Employee3:</strong> Email - employee3@taskflow.com, Password - employee123</li>
-                <li><strong>Employee4:</strong> Email - employee4@taskflow.com, Password - employee123</li>
-                <li><strong>Employee5:</strong> Email - employee5@taskflow.com, Password - employee123</li>
-                <li><strong>Employee6:</strong> Email - employee6@taskflow.com, Password - employee123</li>
-                <li><strong>Employee7:</strong> Email - employee7@taskflow.com, Password - employee123</li>
-                <li><strong>Employee8:</strong> Email - employee8@taskflow.com, Password - employee123</li>
+                <li><strong>Team1:</strong> Email - team1@taskflow.com, Password - team123</li>
+                <li><strong>Team2:</strong> Email - team2@taskflow.com, Password - team123</li>
+                <li><strong>Team3:</strong> Email - team3@taskflow.com, Password - team123</li>
+                <li><strong>Team4:</strong> Email - team4@taskflow.com, Password - team123</li>
             </ul>
         </div>
     </div>
     <script>
-        // Default users data
         const defaultUsers = {
             admin: { email: "admin@taskflow.com", password: "admin123", role: "admin" },
-            employee1: { email: "employee1@taskflow.com", password: "employee123", role: "employee", tasks: [] },
-            employee2: { email: "employee2@taskflow.com", password: "employee123", role: "employee", tasks: [] },
-            employee3: { email: "employee3@taskflow.com", password: "employee123", role: "employee", tasks: [] }, 
-            employee4: { email: "employee4@taskflow.com", password: "employee123", role: "employee", tasks: [] },
-            employee5: { email: "employee5@taskflow.com", password: "employee123", role: "employee", tasks: [] },
-            employee6: { email: "employee6@taskflow.com", password: "employee123", role: "employee", tasks: [] },
-            employee7: { email: "employee7@taskflow.com", password: "employee123", role: "employee", tasks: [] },
-            employee8: { email: "employee8@taskflow.com", password: "employee123", role: "employee", tasks: [] }
+            employee1: { email: "team1@taskflow.com", password: "team123", role: "employee", tasks: [] },
+            employee2: { email: "team2@taskflow.com", password: "team123", role: "employee", tasks: [] },
+            employee3: { email: "team3@taskflow.com", password: "team123", role: "employee", tasks: [] },
+            employee4: { email: "team4@taskflow.com", password: "team123", role: "employee", tasks: [] }
         };
 
-        // Load users from localStorage or use default users
         let users = JSON.parse(localStorage.getItem('users')) || defaultUsers;
 
-        // Save users to localStorage
         function saveUsersToLocalStorage() {
             localStorage.setItem('users', JSON.stringify(users));
         }
@@ -370,7 +426,7 @@
                 displayEmployees();
                 setupTaskForm();
             } else {
-                document.getElementById("employee-dashboard").classList.add("active");
+                document.getElementById("team-dashboard").classList.add("active");
                 displayTasks();
             }
         }
@@ -379,42 +435,38 @@
             const currentUserEmail = localStorage.getItem('currentUserEmail');
             const user = Object.values(users).find(u => u.email === currentUserEmail);
             const taskList = document.getElementById("task-list");
-            taskList.innerHTML = "";
-            user.tasks.forEach((task, index) => {
-                const li = document.createElement("li");
-                li.innerHTML = `<div><strong>${task.title}</strong><br>Description: ${task.description}<br>Due: ${task.dueDate}</div>
-                                <button onclick="completeTask(${index})">Complete</button>`;
-                taskList.appendChild(li);
-            });
-        }
+            const completedTaskList = document.getElementById("completed-task-list");
 
-        function displayEmployees() {
-            const employeeGrid = document.getElementById("employee-grid");
-            const employeeSelect = document.getElementById("employeeSelect");
-            employeeGrid.innerHTML = "";
-            employeeSelect.innerHTML = "<option value='' disabled selected>Select Employee</option>";
-            Object.keys(users).forEach(userKey => {
-                const user = users[userKey];
-                if (user.role === "employee") {
-                    const card = document.createElement("div");
-                    card.className = "employee-card";
-                    card.innerHTML = `<h4>${user.email}</h4>`;
-                    const taskList = document.createElement("ul");
-                    taskList.className = "task-list";
-                    user.tasks.forEach((task, index) => {
-                        const taskItem = document.createElement("li");
-                        taskItem.innerHTML = `<div><strong>${task.title}</strong><br>Description: ${task.description}<br>Due: ${task.dueDate}</div>
-                            <button class="delete-task" onclick="deleteTask('${userKey}', ${index})">Delete</button>`;
-                        taskList.appendChild(taskItem);
-                    });
-                    card.appendChild(taskList);
-                    employeeGrid.appendChild(card);
-                    const option = document.createElement("option");
-                    option.value = userKey;
-                    option.textContent = user.email;
-                    employeeSelect.appendChild(option);
-                }
-            });
+            taskList.innerHTML = "";
+            completedTaskList.innerHTML = "";
+
+            // Display "Your Tasks"
+            if (user.tasks && user.tasks.length > 0) {
+                user.tasks.forEach((task, index) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `<div><strong>${task.title}</strong><br>Description: ${task.description}<br>Due: ${task.dueDate}</div>
+                                    <button onclick="completeTask(${index})">Complete</button>`;
+                    taskList.appendChild(li);
+                });
+            } else {
+                const noTaskMessage = document.createElement("li");
+                noTaskMessage.innerHTML = "No assigned tasks.";
+                taskList.appendChild(noTaskMessage);
+            }
+
+            // Display "Completed Tasks"
+            if (user.completedTasks && user.completedTasks.length > 0) {
+                user.completedTasks.forEach((task, index) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `<div><strong>${task.title}</strong> (Completed)<br>Description: ${task.description}<br>Due: ${task.dueDate}</div>
+                                    <button onclick="deleteCompletedTask(${index})">Delete</button>`;
+                    completedTaskList.appendChild(li);
+                });
+            } else {
+                const noCompletedTaskMessage = document.createElement("li");
+                noCompletedTaskMessage.innerHTML = "No completed tasks.";
+                completedTaskList.appendChild(noCompletedTaskMessage);
+            }
         }
 
         function setupTaskForm() {
@@ -425,12 +477,25 @@
                 const taskDescription = document.getElementById("taskDescription").value;
                 const dueDate = document.getElementById("dueDate").value;
                 const employeeKey = document.getElementById("employeeSelect").value;
+
                 if (employeeKey && taskTitle && taskDescription && dueDate) {
-                    users[employeeKey].tasks.push({ title: taskTitle, description: taskDescription, dueDate });
+                    if (!users[employeeKey].tasks) {
+                        users[employeeKey].tasks = [];
+                    }
+                    users[employeeKey].tasks.push({
+                        title: taskTitle,
+                        description: taskDescription,
+                        dueDate: dueDate,
+                        completed: false
+                    });
+
                     saveUsersToLocalStorage();
+
                     alert("Task assigned successfully!");
                     form.reset();
                     displayEmployees();
+                } else {
+                    alert("Please fill in all fields to assign the task.");
                 }
             };
         }
@@ -438,23 +503,211 @@
         function completeTask(index) {
             const currentUserEmail = localStorage.getItem('currentUserEmail');
             const userKey = Object.keys(users).find(key => users[key].email === currentUserEmail);
-            users[userKey].tasks.splice(index, 1);
+            const completedTask = users[userKey].tasks.splice(index, 1)[0];
+            completedTask.completed = true;
+
+            if (!users[userKey].completedTasks) {
+                users[userKey].completedTasks = [];
+            }
+            users[userKey].completedTasks.push(completedTask);
+
+            saveUsersToLocalStorage();
+            displayTasks();
+            updateTaskProgress(userKey);
+        }
+
+        function deleteCompletedTask(index) {
+            const currentUserEmail = localStorage.getItem('currentUserEmail');
+            const userKey = Object.keys(users).find(key => users[key].email === currentUserEmail);
+            users[userKey].completedTasks.splice(index, 1);
             saveUsersToLocalStorage();
             displayTasks();
         }
 
-        function deleteTask(employeeKey, taskIndex) {
-            users[employeeKey].tasks.splice(taskIndex, 1);
+        // Array to store leave applications
+let leaveApplications = JSON.parse(localStorage.getItem('leaveApplications')) || [];
+
+// Function to handle leave form submission
+document.getElementById("leaveForm").onsubmit = (e) => {
+    e.preventDefault();
+    
+    const name = document.getElementById("employeeName").value;
+    const id = document.getElementById("employeeId").value;
+    const reason = document.getElementById("leaveReason").value;
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+
+    // Validate the date range
+    if (new Date(startDate) > new Date(endDate)) {
+        alert("End date cannot be before the start date.");
+        return;
+    }
+    
+    // Add leave application to the array
+    leaveApplications.push({ name, id, reason, startDate, endDate });
+    saveLeaveApplicationsToLocalStorage();
+    
+    // Clear the form
+    e.target.reset();
+    
+    alert("Leave application submitted successfully.");
+};
+
+// Save leave applications to local storage
+function saveLeaveApplicationsToLocalStorage() {
+    localStorage.setItem('leaveApplications', JSON.stringify(leaveApplications));
+}
+
+// Display leave applications in the admin dashboard
+function displayLeaveApplications() {
+    const leaveApplicationsDiv = document.getElementById("leave-applications");
+    const leaveList = document.createElement("ul");
+    
+    leaveApplicationsDiv.innerHTML = ""; // Clear previous content
+    leaveApplicationsDiv.appendChild(leaveList);
+    
+    if (leaveApplications.length > 0) {
+        leaveApplications.forEach((application, index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `<div>
+                                <strong>Name:</strong> ${application.name}<br>
+                                <strong>ID:</strong> ${application.id}<br>
+                                <strong>Type:</strong> ${application.reason}<br>
+                                <strong>From:</strong> ${application.startDate}<br>
+                                <strong>Till:</strong> ${application.endDate}
+                            </div>
+                            <button onclick="deleteLeaveApplication(${index})">Delete</button>`;
+            leaveList.appendChild(li);
+        });
+    } else {
+        const noApplicationsMessage = document.createElement("li");
+        noApplicationsMessage.textContent = "No leave applications.";
+        leaveList.appendChild(noApplicationsMessage);
+    }
+}
+
+// Delete a leave application
+function deleteLeaveApplication(index) {
+    leaveApplications.splice(index, 1);
+    saveLeaveApplicationsToLocalStorage();
+    displayLeaveApplications();
+}
+
+// Load leave applications when the admin dashboard is shown
+function showDashboard(role) {
+    document.getElementById("login-container").classList.remove("active");
+    if (role === "admin") {
+        document.getElementById("admin-dashboard").classList.add("active");
+        displayEmployees();
+        setupTaskForm();
+        displayLeaveApplications(); // Display leave applications
+    } else {
+        document.getElementById("team-dashboard").classList.add("active");
+        displayTasks();
+    }
+}
+
+// Initialize the leave applications on page load
+window.onload = () => {
+    const currentUserEmail = localStorage.getItem('currentUserEmail');
+    if (currentUserEmail) {
+        const user = Object.values(users).find(u => u.email === currentUserEmail);
+        if (user) {
+            showDashboard(user.role);
+        } else {
+            localStorage.removeItem('currentUserEmail');
+        }
+    }
+    displayLeaveApplications();
+};
+
+        function displayEmployees() {
+            const employeeGrid = document.getElementById("employee-grid");
+            const employeeSelect = document.getElementById("employeeSelect");
+            employeeGrid.innerHTML = "";
+            employeeSelect.innerHTML = "<option value='' disabled selected>Select Team</option>";
+            Object.keys(users).forEach(userKey => {
+                const user = users[userKey];
+                if (user.role === "employee") {
+                    const card = document.createElement("div");
+                    card.className = "employee-card";
+                    card.id = `employee-${userKey}`;
+                    card.innerHTML = `<h4>${user.email}</h4>
+                                      <progress value="0" max="100" class="progress-bar"></progress>
+                                      <div class="progress-text">0% Complete</div>`;
+                    const assignedTaskList = document.createElement("ul");
+                    assignedTaskList.className = "task-list";
+                    const assignedTasksTitle = document.createElement("h5");
+                    assignedTasksTitle.innerText = "Assigned Tasks";
+                    card.appendChild(assignedTasksTitle);
+
+                    user.tasks.forEach((task, index) => {
+                        const taskItem = document.createElement("li");
+                        taskItem.innerHTML = `<div><strong>${task.title}</strong><br>Description: ${task.description}<br>Due: ${task.dueDate}</div>
+                                              <button class="delete-task" onclick="deleteTask('${userKey}', ${index})">Delete</button>`;
+                        assignedTaskList.appendChild(taskItem);
+                    });
+                    card.appendChild(assignedTaskList);
+
+                    const completedTaskList = document.createElement("ul");
+                    completedTaskList.className = "task-list";
+                    const completedTasksTitle = document.createElement("h5");
+                    completedTasksTitle.innerText = "Completed Tasks";
+                    card.appendChild(completedTasksTitle);
+
+                    if (user.completedTasks) {
+                        user.completedTasks.forEach((task, index) => {
+                            const taskItem = document.createElement("li");
+                            taskItem.innerHTML = `<div><strong>${task.title}</strong> (Completed)<br>Description: ${task.description}<br>Due: ${task.dueDate}</div>
+                                                  <button class="delete-task" onclick="deleteCompletedTaskAdmin('${userKey}', ${index})">Delete</button>`;
+                            completedTaskList.appendChild(taskItem);
+                        });
+                    }
+                    card.appendChild(completedTaskList);
+
+                    employeeGrid.appendChild(card);
+                    const option = document.createElement("option");
+                    option.value = userKey;
+                    option.textContent = user.email;
+                    employeeSelect.appendChild(option);
+
+                    updateTaskProgress(userKey);
+                }
+            });
+        }
+
+        function deleteTask(userKey, index) {
+            users[userKey].tasks.splice(index, 1);
             saveUsersToLocalStorage();
-            alert("Task deleted successfully!");
             displayEmployees();
+        }
+
+        function deleteCompletedTaskAdmin(userKey, index) {
+            users[userKey].completedTasks.splice(index, 1);
+            saveUsersToLocalStorage();
+            displayEmployees();
+        }
+
+        function updateTaskProgress(userKey) {
+            const user = users[userKey];
+            const totalTasks = user.tasks.length + (user.completedTasks ? user.completedTasks.length : 0);
+            if (totalTasks === 0) return;
+            
+            const completedTasks = user.completedTasks ? user.completedTasks.length : 0;
+            const progressPercentage = Math.floor((completedTasks / totalTasks) * 100);
+            
+            const card = document.getElementById(`employee-${userKey}`);
+            if (card) {
+                card.querySelector(".progress-bar").value = progressPercentage;
+                card.querySelector(".progress-text").innerText = progressPercentage + "% Complete";
+            }
         }
 
         function logout() {
             localStorage.removeItem('currentUserEmail');
             document.getElementById("login-container").classList.add("active");
             document.getElementById("admin-dashboard").classList.remove("active");
-            document.getElementById("employee-dashboard").classList.remove("active");
+            document.getElementById("team-dashboard").classList.remove("active");
         }
 
         window.onload = () => {
@@ -469,7 +722,6 @@
             }
         };
 
-        // Function to toggle password visibility
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById("password");
             const eyeIcon = document.getElementById("eye");
